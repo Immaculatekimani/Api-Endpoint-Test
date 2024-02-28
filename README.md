@@ -1,55 +1,66 @@
-# Update Booking Endpoint Testing
+## Update Booking Endpoint Testing
 
-## Requirements
+This script demonstrates how to update a booking using the RESTful Booker API with Python.
+
+### Overview
+
+The script sends a PUT request to update a booking with the provided data. It includes Basic authentication credentials in the request headers.
+
+### Requirements
 
 - Python 3.x
 - `requests` library
 
-## Installation
+### Usage
 
-1. Install Python from [python.org](https://www.python.org/downloads/)
-2. Install the `requests` library by running:
-    ```
-    pip install requests
-    ```
-
-## Usage
-
-1. Clone this repository or copy the provided Python script into your project directory.
-2. Update the script with the appropriate URL, authentication token, and booking details.
+1. Copy the script into a Python file (e.g., `test-scenarios.py`).
+2. Update the script with the appropriate Base URL, booking ID, data, and headers.
 3. Run the script using the following command:
     ```
-    python update_booking.py
+    python test-scenarios.py
     ```
 
-## Authentication
+### Script Explanation
 
-The script supports two methods of authentication:
+- **Base URL**: The base URL of the booking system API.
+- **Function `update_booking()`**: Sends a PUT request to update a booking.
+- **Positive Test Scenario**: Updates a booking with valid data and authentication.
+- **Negative Test Scenario**: Attempts to update a booking with an invalid booking ID.
+- **Additional Scenarios**: Test scenarios for missing fields and invalid data types.
 
-- Cookie: Provide the authentication token in the `Cookie` header.
-- Basic: Provide the username and password encoded in Base64 in the `Authorization` header.
+### Test Scenarios
 
-Choose one method based on the API's authentication requirements.
+#### Positive Test Scenario
 
-## Response
+- Updates a booking with valid data and authentication.
+- Verifies the response status code and JSON response.
+- If the status code is 200, the booking was successfully updated.
+- If the status code is 403, there may be an issue with authentication or insufficient permissions.
 
-The script prints the status code and JSON response received from the server.
+#### Negative Test Scenario
 
-- If the status code is `200`, the booking was successfully updated.
-- If the status code is `403`, there may be an issue with authentication or insufficient permissions.
+- Attempts to update a booking with an invalid booking ID.
+- Verifies the response status code and error message.
+- If the status code is 405, then this affirms that the ID is invalid.
 
-## Troubleshooting
+#### Additional Scenarios
 
-If you encounter any issues, consider the following:
+- **Missing Fields Scenario**: Attempts to update a booking with missing required fields.
+    - Verifies the response status code and error message.
+    - If the status code is 400, then this indicates a bad request due to missing fields.
 
-- Double-check the URL of the API endpoint.
-- Ensure that the authentication token or Basic authentication credentials are correct.
-- Review the API documentation for any specific requirements or limitations.
+- **Invalid Data Types Scenario**: Attempts to update a booking with invalid data types.
+    - Verifies the response status code and error message.
+    - If the status code is 500, then this indicates an internal server error caused by invalid data types.
 
-## Contributors
+### Implementation Details
+
+- The script uses Basic authentication with a hardcoded username and password encoded in Base64.
+
+### Contributors
 
 - Immaculate Kimani
 
-## License
+### License
 
 This project is licensed under the [MIT License](LICENSE).
